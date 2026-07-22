@@ -58,19 +58,20 @@ pre b{color:var(--o);font-weight:600}
 <section class="offer">
   <div class="offer-main">
     <span class="badge">Skill payant</span>
-    <h2>veille-to-avatar</h2>
+    <h2>ShortForge</h2>
     <p>Le moteur derrière toutes ces vidéos : script → voix clonée → avatar fixe → captions animées → MP4 1080×1920 prêt à publier. Les prompts ci-dessous ne servent à rien sans lui.</p>
-    <p class="price"><strong>97 €</strong> · licence perso, mises à jour incluses</p>
-    <a class="btn" href="https://buy.stripe.com/REMPLACER">Obtenir le skill</a>
+    <p class="price"><strong>97 €</strong> · paiement unique, mises à jour incluses</p>
+    <a class="btn" href="vente.html">Découvrir ShortForge</a>
   </div>
   <div class="offer-docs">
     <details open>
       <summary>Installation</summary>
       <ol>
         <li>Télécharge l'archive après l'achat, dézippe-la.</li>
-        <li>Copie le dossier <code>veille-to-avatar/</code> dans <code>.claude/skills/</code> de ton projet (ou <code>~/.claude/skills/</code> pour l'avoir partout).</li>
-        <li>Relance Claude Code, puis tape <code>/veille-to-avatar</code> — le skill doit apparaître dans la liste.</li>
+        <li>Copie le dossier <code>shortforge/</code> dans <code>.claude/skills/</code> de ton projet (ou <code>~/.claude/skills/</code> pour l'avoir partout).</li>
+        <li>Relance Claude Code, puis tape <code>/shortforge</code> — le skill doit apparaître dans la liste.</li>
         <li>Renseigne ta clé <code>WAVESPEED_API_KEY</code> dans <code>.claude/settings.json</code>, section <code>env</code>.</li>
+        <li>Prérequis : Node 20+, <code>npx hyperframes init</code> puis <code>npx hyperframes doctor</code>, Chrome headless (<code>npx hyperframes browser install</code>) et ffmpeg.</li>
       </ol>
     </details>
     <details>

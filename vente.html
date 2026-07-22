@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ShortForge — une vidéo avatar par jour, sans monteur</title>
+<style>
+:root{--bg:#0b0b0d;--card:#141418;--line:#26262e;--txt:#eaeaf0;--dim:#8b8b99;--y:#FFE600;--v:#A855F7;--o:#FF8A3D}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 system-ui,sans-serif}
+.w{max-width:880px;margin:auto;padding:0 24px}
+section{padding:56px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+h1{font-size:40px;line-height:1.15;margin:0 0 16px}
+h1 span{color:var(--y)}
+h2{font-size:26px;margin:0 0 20px}
+h3{font-size:17px;margin:0 0 6px}
+p{color:var(--dim);margin:0 0 14px}
+p.lead{font-size:19px;color:var(--txt)}
+.hero{padding-top:72px}
+.badge{display:inline-block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:var(--y);color:#111;font-weight:700;border-radius:99px;padding:3px 10px;margin-bottom:18px}
+.btn{display:inline-block;background:var(--y);color:#111;font-weight:700;text-decoration:none;padding:14px 24px;border-radius:11px;font-size:17px}
+.btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:24px}
+.note{font-size:13px;color:var(--dim);margin:12px 0 0}
+.grid{display:grid;gap:16px;grid-template-columns:1fr 1fr}
+@media(max-width:700px){.grid{grid-template-columns:1fr}h1{font-size:31px}}
+.box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.box p{margin:0;font-size:14px}
+.box.no h3{color:#ff6b6b}
+.box.yes h3{color:var(--y)}
+ol.steps{counter-reset:s;list-style:none;padding:0;margin:0}
+ol.steps li{counter-increment:s;position:relative;padding:0 0 20px 52px}
+ol.steps li:before{content:counter(s);position:absolute;left:0;top:0;width:34px;height:34px;border-radius:50%;background:var(--v);color:#fff;font-weight:700;display:grid;place-items:center}
+ol.steps b{display:block;margin-bottom:2px}
+ol.steps span{color:var(--dim);font-size:14px}
+ul.check{list-style:none;padding:0;margin:0}
+ul.check li{padding-left:26px;position:relative;margin-bottom:10px;color:var(--dim);font-size:15px}
+ul.check li:before{content:"✓";position:absolute;left:0;color:var(--y);font-weight:700}
+ul.check b{color:var(--txt)}
+.math{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--y);border-radius:0 12px 12px 0;padding:18px}
+.math table{width:100%;border-collapse:collapse;font-size:14px}
+.math td{padding:6px 0;color:var(--dim)}
+.math td:last-child{text-align:right;color:var(--txt);font-variant-numeric:tabular-nums}
+.math tr.tot td{border-top:1px solid var(--line);padding-top:12px;color:var(--txt);font-weight:700}
+details{border-top:1px solid var(--line);padding:14px 0}
+summary{cursor:pointer;font-weight:600}
+details p{margin:10px 0 0;font-size:14px}
+code{background:var(--card);border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:13px;color:var(--o)}
+.price{font-size:44px;font-weight:800;margin:0}
+.price small{font-size:16px;font-weight:400;color:var(--dim)}
+footer{padding:40px 0 80px;color:var(--dim);font-size:13px}
+footer a{color:var(--y)}
+</style>
+</head>
+<body>
+<div class="w">
+
+<section class="hero">
+  <span class="badge">Skill Claude Code</span>
+  <h1>Tu sais qu'il faut poster tous les jours.<br><span>Tu ne le fais pas.</span></h1>
+  <p class="lead">Pas par flemme : parce qu'une vidéo, c'est écrire, filmer, monter, sous-titrer, exporter, publier. Deux heures. ShortForge fait les six étapes à partir d'un paragraphe de texte, et te rend un MP4 vertical prêt à poster.</p>
+  <div class="cta-row">
+    <a class="btn" href="https://buy.stripe.com/REMPLACER">Obtenir ShortForge — 97 €</a>
+    <a class="btn ghost" href="index.html">Voir les 10 formats</a>
+  </div>
+  <p class="note">Paiement unique. Mises à jour incluses. Tourne dans ton Claude Code, sur ta machine.</p>
+</section>
+
+<section>
+  <h2>Le vrai problème n'est pas la création. C'est la répétition.</h2>
+  <p>Faire une belle vidéo, tu sais faire. En faire <b style="color:var(--txt)">vingt d'affilée, au même niveau, sans y passer tes soirées</b> — c'est là que tout le monde décroche. Le compte s'éteint après huit posts.</p>
+  <div class="grid">
+    <div class="box no">
+      <h3>Sans le skill</h3>
+      <p>Tu réécris le script à chaque fois. Tu refilmes parce que la lumière a changé. Tu recales les sous-titres à la main. Chaque vidéo a une gueule différente. Tu abandonnes au bout de trois semaines.</p>
+    </div>
+    <div class="box yes">
+      <h3>Avec le skill</h3>
+      <p>Tu colles un brief. Ta voix clonée narre, ton avatar filmé une seule fois joue, les captions se calent sur l'audio, le rendu sort en 1080×1920. Même identité visuelle sur les cent prochaines vidéos.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Comment ça marche</h2>
+  <ol class="steps">
+    <li><b>Tu prépares deux fichiers, une fois pour toutes</b><span>30 secondes de ta voix, 45 secondes de toi face caméra. C'est le seul tournage de ta vie.</span></li>
+    <li><b>Tu colles un brief</b><span>Un script, un article, trois lignes de notes. Le skill calcule la durée cible, étoffe ou resserre le texte pour tomber entre 25 et 35 secondes.</span></li>
+    <li><b>Il fabrique la vidéo</b><span>Voix clonée, avatar détouré et bouclé, captions mot-à-mot calées sur l'audio, visuels animés selon la direction artistique choisie.</span></li>
+    <li><b>Tu récupères un MP4</b><span>1080×1920, 30 fps, prêt pour TikTok, Reels et Shorts. Tu regardes, tu valides, tu postes.</span></li>
+  </ol>
+</section>
+
+<section>
+  <h2>Ce qui est dedans</h2>
+  <ul class="check">
+    <li><b>Le skill complet</b> — la méthode entière, pas une démo : calcul du débit vocal, structure narrative, règles de captions, détourage avatar, commandes de rendu.</li>
+    <li><b>10 formats de vidéo</b> — tuto, avant/après, erreur à éviter, top 3, étude de cas, démo produit, storytime, comparatif, checklist, veille.</li>
+    <li><b>10 directions artistiques</b> — néon, éditorial, brutalist, swiss, terminal, Y2K, VHS, pastel, luxe, papier découpé. Police, palette et style d'animation changent ensemble.</li>
+    <li><b>Les pièges déjà résolus</b> — pourquoi ton TTS prononce mal les sigles, pourquoi le fond vert laisse un liseré, pourquoi accélérer l'audio s'entend, pourquoi ton avatar cligne des yeux sur la frame d'ouverture. Chacun a coûté un rendu raté.</li>
+    <li><b>Un config.json</b> — tes couleurs, ta voix, ton CTA. Tu ne touches pas au code du skill.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Prérequis techniques</h2>
+  <p>Tout est gratuit sauf l'API vocale. Compte 15 minutes d'installation, une seule fois.</p>
+  <ul class="check">
+    <li><b>Claude Code</b> — CLI, app desktop ou extension IDE. C'est lui qui exécute le skill.</li>
+    <li><b>Node.js 20+</b> — requis par HyperFrames.</li>
+    <li><b>HyperFrames</b> — le moteur de rendu vidéo (compositions HTML → MP4). Installé par <code>npx hyperframes init</code>, puis <code>npx hyperframes doctor</code> pour vérifier l'environnement.</li>
+    <li><b>Chrome / Chromium</b> — HyperFrames rend les frames dans un navigateur headless. <code>npx hyperframes browser install</code> s'en occupe.</li>
+    <li><b>ffmpeg</b> — assemblage audio/vidéo, détourage de l'avatar, encodage final.</li>
+    <li><b>Une clé API WaveSpeed</b> — pour la voix clonée. À toi, facturée à l'usage, ≈ 0,50 € par vidéo.</li>
+    <li><b>Tes deux assets</b> — <code>voice-reference-clean.wav</code> (30 s de ta voix) et <code>avatar.mp4</code> (45 s face caméra). Le skill dit précisément comment les enregistrer.</li>
+  </ul>
+  <p class="note">Machine : 8 Go de RAM minimum, 16 Go confortable. Un rendu de 30 s prend 3 à 8 minutes selon la machine.</p>
+</section>
+
+<section>
+  <h2>Le calcul</h2>
+  <div class="math">
+    <table>
+      <tr><td>Un monteur freelance, la vidéo</td><td>80 – 150 €</td></tr>
+      <tr><td>Toi, 2 h par vidéo, à 50 €/h</td><td>100 €</td></tr>
+      <tr><td>ShortForge, coût API par vidéo</td><td>≈ 0,50 €</td></tr>
+      <tr class="tot"><td>Rentabilisé après</td><td>2 vidéos</td></tr>
+    </table>
+  </div>
+  <p style="margin-top:16px">Et ce n'est pas le vrai gain. Le vrai gain, c'est de tenir la cadence assez longtemps pour que l'algorithme te remarque.</p>
+</section>
+
+<section>
+  <h2>Pour qui c'est</h2>
+  <div class="grid">
+    <div class="box"><h3>Freelances &amp; consultants</h3><p>Tu vends une expertise. Il faut la montrer trois fois par semaine sans y laisser tes heures facturables.</p></div>
+    <div class="box"><h3>Agences &amp; studios</h3><p>Tu produis pour plusieurs clients. Une identité visuelle par client, un pipeline unique.</p></div>
+    <div class="box"><h3>Créateurs &amp; formateurs</h3><p>Tu as déjà les idées et les scripts. Il te manque juste la chaîne de production.</p></div>
+    <div class="box"><h3>Ce n'est pas pour toi si…</h3><p>Tu cherches un bouton magique sans jamais te filmer, ou tu veux du montage cinéma image par image.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Questions</h2>
+  <details open><summary>Il faut savoir coder ?</summary><p>Non. Il faut Claude Code installé. Tu copies le dossier du skill, tu tapes une commande, tu réponds aux questions.</p></details>
+  <details><summary>Ça marche sans montrer mon visage ?</summary><p>Oui. Sans avatar, la vidéo passe en full motion design — les captions et les visuels animés portent le message. L'avatar rend juste le format plus performant.</p></details>
+  <details><summary>Ma voix clonée, elle sonne robotique ?</summary><p>Pas si ton échantillon est propre. 30 secondes enregistrées au calme suffisent. Le skill documente exactement quoi enregistrer et comment.</p></details>
+  <details><summary>Il y a des coûts en plus ?</summary><p>Oui, l'API de génération vocale, à ton compte : environ 0,50 € par vidéo. Aucun abonnement de mon côté.</p></details>
+  <details><summary>Ça tourne sur Windows / Mac / Linux ?</summary><p>Les trois, dès que Claude Code et ffmpeg tournent.</p></details>
+  <details><summary>Et si ça ne me convient pas ?</summary><p>Écris-moi dans les 14 jours, je rembourse.</p></details>
+</section>
+
+<section>
+  <h2>Une vidéo, ce soir.</h2>
+  <p class="price">97 € <small>· paiement unique</small></p>
+  <div class="cta-row">
+    <a class="btn" href="https://buy.stripe.com/REMPLACER">Obtenir ShortForge</a>
+    <a class="btn ghost" href="index.html">D'abord voir les prompts</a>
+  </div>
+</section>
+
+<footer>Paiement sécurisé par Stripe · <a href="index.html">Bibliothèque de templates</a></footer>
+
+</div>
+</body>
+</html>
