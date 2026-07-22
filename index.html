@@ -3,126 +3,209 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Autoboost — Templates vidéo avatar</title>
+<title>ShortForge — 100 vidéos, un seul copier-coller</title>
 <style>
-:root{--bg:#0b0b0d;--card:#141418;--line:#26262e;--txt:#eaeaf0;--dim:#8b8b99;--y:#FFE600;--v:#A855F7;--o:#FF8A3D}
+:root{--bg:#0b0b0d;--card:#141418;--card2:#0e0e12;--line:#26262e;--txt:#eaeaf0;--dim:#8b8b99;--y:#FFE600;--v:#A855F7;--o:#FF8A3D;--ease:cubic-bezier(.2,.8,.2,1)}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.5 system-ui,sans-serif}
-header{padding:48px 24px 24px;max-width:1100px;margin:auto}
-h1{margin:0 0 8px;font-size:30px}
-h1 span{color:var(--y)}
-p.sub{margin:0;color:var(--dim)}
-.filters{max-width:1100px;margin:24px auto 0;padding:0 24px;display:flex;gap:8px;flex-wrap:wrap}
-.filters button{background:var(--card);border:1px solid var(--line);color:var(--dim);padding:6px 14px;border-radius:99px;cursor:pointer;font-size:13px}
-.filters button.on{border-color:var(--y);color:var(--y)}
-main{max-width:1100px;margin:24px auto 80px;padding:0 24px;display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:10px}
-.card h2{margin:0;font-size:17px}
-.tag{align-self:flex-start;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--v);border:1px solid var(--v);border-radius:99px;padding:2px 9px}
-.desc{color:var(--dim);font-size:13px;margin:0}
-pre{margin:0;background:#0e0e12;border:1px solid var(--line);border-radius:10px;padding:12px;max-height:200px;overflow:auto;font-size:12px;white-space:pre-wrap;color:#cfcfda}
-pre b{color:var(--o);font-weight:600}
-.copy{background:var(--y);color:#111;border:0;border-radius:9px;padding:9px;font-weight:700;cursor:pointer}
-.copy.done{background:var(--v);color:#fff}
-.offer{max-width:1100px;margin:8px auto 0;padding:0 24px;display:grid;gap:18px;grid-template-columns:1fr 1fr}
-@media(max-width:760px){.offer{grid-template-columns:1fr}}
-.offer-main,.offer-docs{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
-.offer-main{border-color:var(--y)}
+body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.6 system-ui,sans-serif;overflow-x:hidden}
+.w{max-width:1100px;margin:auto;padding:0 24px}
+a{color:var(--y)}
+
+/* hero */
+header{position:relative;padding:88px 0 44px}
+header:before{content:"";position:absolute;top:-260px;left:50%;width:900px;height:620px;margin-left:-450px;
+  background:radial-gradient(circle at 50% 50%,rgba(168,85,247,.20),rgba(255,230,0,.07) 42%,transparent 68%);
+  filter:blur(20px);pointer-events:none;z-index:-1}
+h1{margin:0 0 14px;font-size:46px;line-height:1.08;letter-spacing:-.02em;font-weight:800}
+h1 em{font-style:italic;font-weight:800;background:linear-gradient(100deg,var(--y),var(--o) 55%,var(--v));-webkit-background-clip:text;background-clip:text;color:transparent}
+p.sub{margin:0;color:var(--dim);font-size:18px;max-width:640px}
+.kpis{display:flex;gap:26px;flex-wrap:wrap;margin-top:26px}
+.kpi b{display:block;font-size:23px;color:var(--txt);font-weight:800;line-height:1.2}
+.kpi span{font-size:12px;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}
+
+/* section chrome */
+section{padding:34px 0}
+.eyebrow{margin:0 0 4px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+h2.sec{margin:0 0 6px;font-size:24px;letter-spacing:-.01em}
+p.hint{margin:0 0 18px;font-size:14px;color:var(--dim);max-width:680px}
+
+/* offer */
+.offer{display:grid;gap:18px;grid-template-columns:1.15fr 1fr}
+.offer-main,.offer-docs{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+.offer-main{position:relative;border-color:rgba(255,230,0,.45);background:linear-gradient(180deg,rgba(255,230,0,.05),transparent 55%),var(--card)}
 .badge{display:inline-block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:var(--y);color:#111;font-weight:700;border-radius:99px;padding:3px 10px}
-.offer h2{margin:12px 0 8px;font-size:24px}
+.offer h3{margin:12px 0 8px;font-size:25px;letter-spacing:-.01em}
 .offer p{margin:0 0 10px;color:var(--dim);font-size:14px}
-.price strong{color:var(--y);font-size:20px}
-.price s{color:var(--dim)}
-.btn{display:inline-block;background:var(--y);color:#111;font-weight:700;text-decoration:none;padding:11px 18px;border-radius:10px}
-.offer-docs details{border-top:1px solid var(--line);padding:10px 0}
-.offer-docs details:first-child{border-top:0;padding-top:0}
-.offer-docs summary{cursor:pointer;font-weight:600;font-size:14px}
-.offer-docs ol{margin:10px 0 0;padding-left:18px;color:var(--dim);font-size:13px}
-.offer-docs li{margin-bottom:6px}
-.offer-docs code{background:#0e0e12;border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:12px;color:var(--o)}
-.styles{max-width:1100px;margin:28px auto 0;padding:0 24px}
-.styles h3{margin:0 0 4px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
-.styles p.hint{margin:0 0 12px;font-size:13px;color:var(--dim)}
+.price s{color:var(--dim)}.price strong{color:var(--y);font-size:21px}
+.btn{display:inline-block;background:var(--y);color:#111;font-weight:700;text-decoration:none;padding:11px 18px;border-radius:10px;transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 26px -10px rgba(255,230,0,.7)}
+.offer-docs ul{margin:0;padding-left:18px;color:var(--dim);font-size:13.5px}
+.offer-docs li{margin-bottom:7px}
+
+/* example — preview panel */
+.ex{display:grid;gap:18px;grid-template-columns:340px 1fr;align-items:start}
+.ex-meta{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;position:sticky;top:20px}
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+.chip{font-size:11.5px;border:1px solid var(--line);border-radius:99px;padding:3px 10px;color:var(--dim)}
+.chip.v{border-color:var(--v);color:var(--v)}
+.chip.y{border-color:var(--y);color:var(--y)}
+.ex-meta h3{margin:0 0 8px;font-size:19px}
+.ex-meta p{margin:0 0 16px;font-size:13.5px;color:var(--dim)}
+.win{background:var(--card2);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.win-bar{display:flex;align-items:center;gap:8px;padding:11px 14px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.02)}
+.win-bar i{width:11px;height:11px;border-radius:50%;display:block;background:#3a3a44}
+.win-bar i:nth-child(1){background:#ff5f57}.win-bar i:nth-child(2){background:#febc2e}.win-bar i:nth-child(3){background:#28c840}
+.win-bar span{margin-left:6px;font:12px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--dim)}
+.win pre{margin:0;padding:18px;max-height:420px;overflow:auto;font:12.5px/1.65 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;color:#cfcfda}
+
+/* styles selector */
 .srow{display:flex;gap:8px;flex-wrap:wrap}
-.sbtn{background:var(--card);border:1px solid var(--line);color:var(--txt);border-radius:11px;padding:8px 12px;cursor:pointer;display:flex;align-items:center;gap:8px;font-size:13px}
-.sbtn.on{border-color:var(--y)}
+.sbtn{background:var(--card);border:1px solid var(--line);color:var(--txt);border-radius:12px;padding:8px 13px;cursor:pointer;display:flex;align-items:center;gap:8px;font-size:13px;transition:transform .18s var(--ease),border-color .18s var(--ease)}
+.sbtn:hover{transform:translateY(-2px)}
+.sbtn.on{border-color:var(--y);box-shadow:0 0 0 1px rgba(255,230,0,.25)}
 .dots{display:flex}
 .dots i{width:11px;height:11px;border-radius:50%;display:block;margin-right:-4px;border:1px solid #0006}
-.sdesc{margin:10px 0 0;font-size:13px;color:var(--dim)}
+.sdesc{margin:12px 0 0;font-size:13.5px;color:var(--dim)}
+
+/* filters + grid */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.filters button{background:var(--card);border:1px solid var(--line);color:var(--dim);padding:6px 14px;border-radius:99px;cursor:pointer;font-size:13px;transition:color .18s,border-color .18s}
+.filters button:hover{color:var(--txt)}
+.filters button.on{border-color:var(--y);color:var(--y)}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));padding-bottom:80px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:10px;transition:transform .25s var(--ease),border-color .25s var(--ease),box-shadow .25s var(--ease)}
+.card:hover{transform:translateY(-4px);border-color:#3a3a46;box-shadow:0 18px 40px -24px #000}
+.card h3{margin:0;font-size:17px}
+.tag{align-self:flex-start;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--v);border:1px solid var(--v);border-radius:99px;padding:2px 9px}
+.desc{color:var(--dim);font-size:13px;margin:0}
+.card pre{margin:0;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:12px;max-height:190px;overflow:auto;font:12px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;color:#cfcfda}
+.card pre b{color:var(--o);font-weight:600}
+.copy{background:var(--y);color:#111;border:0;border-radius:10px;padding:10px;font-weight:700;cursor:pointer;transition:transform .18s var(--ease),background .18s}
+.copy:hover{transform:translateY(-2px)}
+.copy.done{background:var(--v);color:#fff}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(20px)}
+.reveal.in{opacity:1;transform:none;transition:opacity .65s var(--ease),transform .65s var(--ease)}
+
+@media(max-width:860px){.offer,.ex{grid-template-columns:1fr}.ex-meta{position:static}h1{font-size:33px}p.sub{font-size:16px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}.reveal{opacity:1;transform:none}}
 </style>
 </head>
 <body>
+<div class="w">
+
 <header>
-  <h1>Templates vidéo <span>avatar</span></h1>
-  <p class="sub">Choisis un format + une direction artistique, copie, remplace les {{VARIABLES}}, colle dans Claude Code.</p>
+  <h1>Le montage, c'est ce qui tue ta régularité.<br><em>Colle un prompt, récupère la vidéo.</em></h1>
+  <p class="sub">10 formats de vidéo × 10 directions artistiques. Tu remplis les variables, ShortForge fabrique le MP4 vertical : voix clonée, avatar, captions calées sur l'audio.</p>
+  <div class="kpis">
+    <div class="kpi"><b>100</b><span>combinaisons</span></div>
+    <div class="kpi"><b>~30 s</b><span>par vidéo</span></div>
+    <div class="kpi"><b>1</b><span>seul tournage</span></div>
+  </div>
 </header>
-<section class="offer">
-  <div class="offer-main">
-    <span class="badge">Skill payant</span>
-    <h2>ShortForge</h2>
-    <p>Le moteur derrière toutes ces vidéos : script → voix clonée → avatar fixe → captions animées → MP4 1080×1920 prêt à publier. Les prompts ci-dessous ne servent à rien sans lui.</p>
-    <p class="price"><s>97 €</s> <strong>67 €</strong> · prix fondateur, 20 places · paiement unique</p>
-    <a class="btn" href="vente.html">Découvrir ShortForge</a>
-  </div>
-  <div class="offer-docs">
-    <p style="margin-top:0"><strong style="color:var(--txt)">Ce que tu reçois après l'achat</strong></p>
-    <ul style="margin:0;padding-left:18px;color:var(--dim);font-size:13px">
-      <li style="margin-bottom:6px">L'archive du skill, à déposer dans <code>.claude/skills/</code></li>
-      <li style="margin-bottom:6px">Le guide d'installation pas à pas</li>
-      <li style="margin-bottom:6px">La procédure d'enregistrement de ta voix de référence</li>
-      <li style="margin-bottom:6px">La procédure de tournage de ton avatar et son détourage</li>
-      <li>Le <code>config.json</code> à tes couleurs</li>
-    </ul>
-    <p style="margin:14px 0 0;font-size:13px"><a href="vente.html" style="color:var(--y)">Voir les prérequis techniques →</a></p>
-  </div>
-</section>
-<section class="styles" id="example">
-  <h3>Exemple rempli</h3>
-  <p class="hint" id="exnote"></p>
-  <div class="card" style="max-width:640px">
-    <h2 id="extitle"></h2>
-    <pre id="expre"></pre>
-    <button class="copy" data-ex="1">Copier cet exemple</button>
+
+<section class="reveal">
+  <div class="offer">
+    <div class="offer-main">
+      <span class="badge">Skill payant</span>
+      <h3>ShortForge</h3>
+      <p>Le moteur derrière toutes ces vidéos : script → voix clonée → avatar fixe → captions animées → MP4 1080×1920 prêt à publier. Les prompts ci-dessous ne servent à rien sans lui.</p>
+      <p class="price"><s>97 €</s> <strong>67 €</strong> · prix fondateur, 20 places</p>
+      <a class="btn" href="vente.html">Découvrir ShortForge</a>
+    </div>
+    <div class="offer-docs">
+      <p style="margin-top:0"><strong style="color:var(--txt)">Ce que tu reçois après l'achat</strong></p>
+      <ul>
+        <li>L'archive du skill, à déposer dans <code>.claude/skills/</code></li>
+        <li>Le guide d'installation pas à pas</li>
+        <li>La procédure d'enregistrement de ta voix de référence</li>
+        <li>La procédure de tournage de ton avatar et son détourage</li>
+        <li>Le <code>config.json</code> à tes couleurs</li>
+      </ul>
+      <p style="margin:14px 0 0;font-size:13px"><a href="vente.html">Voir les prérequis techniques →</a></p>
+    </div>
   </div>
 </section>
-<section class="styles">
-  <h3>Direction artistique</h3>
-  <p class="hint">Elle est ajoutée automatiquement au prompt que tu copies.</p>
+
+<section class="reveal" id="example">
+  <p class="eyebrow">Exemple</p>
+  <h2 class="sec">À quoi ressemble un prompt rempli</h2>
+  <p class="hint">Un format et une direction artistique se combinent en un seul bloc. Voici le résultat, prêt à coller.</p>
+  <div class="ex">
+    <div class="ex-meta">
+      <div class="chips">
+        <span class="chip y">Format · Top 3</span>
+        <span class="chip v">DA · Pastel doux</span>
+        <span class="chip">34 s</span>
+        <span class="chip">FR</span>
+      </div>
+      <h3 id="extitle"></h3>
+      <p id="exnote"></p>
+      <button class="copy" data-ex="1" style="width:100%">Copier cet exemple</button>
+    </div>
+    <div class="win">
+      <div class="win-bar"><i></i><i></i><i></i><span>prompt.txt</span></div>
+      <pre id="expre"></pre>
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <p class="eyebrow">Direction artistique</p>
+  <h2 class="sec">Choisis le style, le prompt s'adapte</h2>
+  <p class="hint">Police, palette et style d'animation changent ensemble. La DA sélectionnée est injectée dans chaque prompt que tu copies.</p>
   <div class="srow" id="srow"></div>
   <p class="sdesc" id="sdesc"></p>
 </section>
-<div class="filters" id="filters"></div>
-<main id="grid"></main>
-<script src="templates.js?v=3"></script>
+
+<section class="reveal">
+  <p class="eyebrow">Bibliothèque</p>
+  <h2 class="sec">10 formats de vidéo</h2>
+  <p class="hint">Remplace les variables en surbrillance, colle dans Claude Code.</p>
+  <div class="filters" id="filters"></div>
+  <div class="grid" id="grid"></div>
+</section>
+
+</div>
+<script src="templates.js?v=4"></script>
 <script>
 const grid=document.getElementById('grid'),filters=document.getElementById('filters'),
       srow=document.getElementById('srow'),sdesc=document.getElementById('sdesc');
-// garde-fou : si un fichier templates.js périmé est servi depuis le cache, on
-// affiche les formats sans DA plutôt que de planter et de laisser la page vide
+// garde-fou : si un templates.js périmé est servi depuis le cache, on affiche les
+// formats sans DA plutôt que de planter et de laisser la page vide
 window.STYLES=window.STYLES||[{id:"default",name:"Style par défaut",swatch:["#FFE600"],desc:"",prompt:""}];
 window.EXAMPLE=window.EXAMPLE||null;
 const tags=['Tous',...new Set(TEMPLATES.map(t=>t.tag))];
 let active='Tous',style=STYLES[0];
 const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 const full=t=>t.prompt+'\n\n'+style.prompt+'\n(Cette direction artistique remplace les consignes visuelles ci-dessus.)';
+
 if(EXAMPLE){
   document.getElementById('extitle').textContent=EXAMPLE.title;
   document.getElementById('exnote').textContent=EXAMPLE.note;
   document.getElementById('expre').textContent=EXAMPLE.prompt;
 }else document.getElementById('example').style.display='none';
+
 function render(){
   srow.innerHTML=STYLES.map(s=>`<button class="sbtn ${s.id===style.id?'on':''}" data-s="${s.id}"><span class="dots">${s.swatch.map(c=>`<i style="background:${c}"></i>`).join('')}</span>${s.name}</button>`).join('');
   sdesc.textContent=style.desc;
   filters.innerHTML=tags.map(t=>`<button class="${t===active?'on':''}" data-t="${t}">${t}</button>`).join('');
-  grid.innerHTML=TEMPLATES.filter(t=>active==='Tous'||t.tag===active).map(t=>`
-    <article class="card">
+  grid.innerHTML=TEMPLATES.filter(t=>active==='Tous'||t.tag===active).map((t,i)=>`
+    <article class="card reveal" style="transition-delay:${Math.min(i,6)*45}ms">
       <span class="tag">${t.tag}</span>
-      <h2>${t.name}</h2>
+      <h3>${t.name}</h3>
       <p class="desc">${t.desc}</p>
       <pre>${esc(full(t)).replace(/\{\{[A-Z0-9_]+\}\}/g,m=>'<b>'+m+'</b>')}</pre>
       <button class="copy" data-id="${t.id}">Copier le prompt</button>
     </article>`).join('');
+  watch();
 }
+
+// scroll-reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
+const watch=()=>document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));
+
 // clipboard API indisponible hors HTTPS -> fallback textarea + execCommand
 function copy(txt){
   if(navigator.clipboard&&window.isSecureContext) return navigator.clipboard.writeText(txt).catch(()=>legacy(txt));
@@ -140,8 +223,8 @@ document.addEventListener('click',e=>{
   const f=e.target.closest('[data-t]'); if(f){active=f.dataset.t;render();return;}
   const c=e.target.closest('.copy'); if(!c)return;
   copy(c.dataset.ex?EXAMPLE.prompt:full(TEMPLATES.find(t=>t.id===c.dataset.id)));
-  c.textContent='Copié ✓';c.classList.add('done');
-  setTimeout(()=>{c.textContent='Copier le prompt';c.classList.remove('done')},1500);
+  const old=c.textContent;c.textContent='Copié ✓';c.classList.add('done');
+  setTimeout(()=>{c.textContent=old;c.classList.remove('done')},1500);
 });
 render();
 </script>
