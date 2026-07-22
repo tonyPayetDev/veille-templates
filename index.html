@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Autoboost — Templates vidéo avatar</title>
+<style>
+:root{--bg:#0b0b0d;--card:#141418;--line:#26262e;--txt:#eaeaf0;--dim:#8b8b99;--y:#FFE600;--v:#A855F7;--o:#FF8A3D}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.5 system-ui,sans-serif}
+header{padding:48px 24px 24px;max-width:1100px;margin:auto}
+h1{margin:0 0 8px;font-size:30px}
+h1 span{color:var(--y)}
+p.sub{margin:0;color:var(--dim)}
+.filters{max-width:1100px;margin:24px auto 0;padding:0 24px;display:flex;gap:8px;flex-wrap:wrap}
+.filters button{background:var(--card);border:1px solid var(--line);color:var(--dim);padding:6px 14px;border-radius:99px;cursor:pointer;font-size:13px}
+.filters button.on{border-color:var(--y);color:var(--y)}
+main{max-width:1100px;margin:24px auto 80px;padding:0 24px;display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.card h2{margin:0;font-size:17px}
+.tag{align-self:flex-start;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--v);border:1px solid var(--v);border-radius:99px;padding:2px 9px}
+.desc{color:var(--dim);font-size:13px;margin:0}
+pre{margin:0;background:#0e0e12;border:1px solid var(--line);border-radius:10px;padding:12px;max-height:200px;overflow:auto;font-size:12px;white-space:pre-wrap;color:#cfcfda}
+pre b{color:var(--o);font-weight:600}
+.copy{background:var(--y);color:#111;border:0;border-radius:9px;padding:9px;font-weight:700;cursor:pointer}
+.copy.done{background:var(--v);color:#fff}
+</style>
+</head>
+<body>
+<header>
+  <h1>Templates vidéo <span>avatar</span></h1>
+  <p class="sub">Copie un prompt, remplace les {{VARIABLES}}, colle-le dans Claude Code. Même style de vidéo tuto avatar à chaque fois.</p>
+</header>
+<div class="filters" id="filters"></div>
+<main id="grid"></main>
+<script src="templates.js"></script>
+<script>
+const grid=document.getElementById('grid'),filters=document.getElementById('filters');
+const tags=['Tous',...new Set(TEMPLATES.map(t=>t.tag))];
+let active='Tous';
+const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+function render(){
+  filters.innerHTML=tags.map(t=>`<button class="${t===active?'on':''}" data-t="${t}">${t}</button>`).join('');
+  grid.innerHTML=TEMPLATES.filter(t=>active==='Tous'||t.tag===active).map(t=>`
+    <article class="card">
+      <span class="tag">${t.tag}</span>
+      <h2>${t.name}</h2>
+      <p class="desc">${t.desc}</p>
+      <pre>${esc(t.prompt).replace(/\{\{[A-Z0-9_]+\}\}/g,m=>'<b>'+m+'</b>')}</pre>
+      <button class="copy" data-id="${t.id}">Copier le prompt</button>
+    </article>`).join('');
+}
+document.addEventListener('click',e=>{
+  const f=e.target.closest('[data-t]'); if(f){active=f.dataset.t;render();return;}
+  const c=e.target.closest('.copy'); if(!c)return;
+  navigator.clipboard.writeText(TEMPLATES.find(t=>t.id===c.dataset.id).prompt);
+  c.textContent='Copié ✓';c.classList.add('done');
+  setTimeout(()=>{c.textContent='Copier le prompt';c.classList.remove('done')},1500);
+});
+render();
+</script>
+</body>
+</html>
