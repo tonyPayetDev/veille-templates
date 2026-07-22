@@ -1,0 +1,11 @@
+{
+  "voiceReferencePath": "assets/voice-reference-clean.wav",
+  "brandColors": {
+    "background": "#060606",
+    "accentPrimary": "#FFE600",
+    "accentSecondary": "#A855F7",
+    "accentTertiary": "#FF8A3D"
+  },
+  "defaultCtaKeyword": "GUIDE",
+  "sheetUrl": null
+}
