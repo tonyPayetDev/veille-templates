@@ -97,6 +97,15 @@ pre b{color:var(--o);font-weight:600}
     </details>
   </div>
 </section>
+<section class="styles" id="example">
+  <h3>Exemple rempli</h3>
+  <p class="hint" id="exnote"></p>
+  <div class="card" style="max-width:640px">
+    <h2 id="extitle"></h2>
+    <pre id="expre"></pre>
+    <button class="copy" data-ex="1">Copier cet exemple</button>
+  </div>
+</section>
 <section class="styles">
   <h3>Direction artistique</h3>
   <p class="hint">Elle est ajoutée automatiquement au prompt que tu copies.</p>
@@ -113,6 +122,9 @@ const tags=['Tous',...new Set(TEMPLATES.map(t=>t.tag))];
 let active='Tous',style=STYLES[0];
 const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 const full=t=>t.prompt+'\n\n'+style.prompt+'\n(Cette direction artistique remplace les consignes visuelles ci-dessus.)';
+document.getElementById('extitle').textContent=EXAMPLE.title;
+document.getElementById('exnote').textContent=EXAMPLE.note;
+document.getElementById('expre').textContent=EXAMPLE.prompt;
 function render(){
   srow.innerHTML=STYLES.map(s=>`<button class="sbtn ${s.id===style.id?'on':''}" data-s="${s.id}"><span class="dots">${s.swatch.map(c=>`<i style="background:${c}"></i>`).join('')}</span>${s.name}</button>`).join('');
   sdesc.textContent=style.desc;
@@ -142,7 +154,7 @@ document.addEventListener('click',e=>{
   const s=e.target.closest('[data-s]'); if(s){style=STYLES.find(x=>x.id===s.dataset.s);render();return;}
   const f=e.target.closest('[data-t]'); if(f){active=f.dataset.t;render();return;}
   const c=e.target.closest('.copy'); if(!c)return;
-  copy(full(TEMPLATES.find(t=>t.id===c.dataset.id)));
+  copy(c.dataset.ex?EXAMPLE.prompt:full(TEMPLATES.find(t=>t.id===c.dataset.id)));
   c.textContent='Copié ✓';c.classList.add('done');
   setTimeout(()=>{c.textContent='Copier le prompt';c.classList.remove('done')},1500);
 });

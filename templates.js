@@ -217,6 +217,35 @@ Visuels : captures de l'annonce officielle en b-roll, avatar en bas, chiffres cl
   }
 ];
 
+// Exemple d'un template rempli, tel qu'on l'envoie réellement.
+window.EXAMPLE = {
+  title: "Top 3 × Pastel doux",
+  note: "Le template « Top 3 » avec ses variables remplies et la direction artistique « Pastel doux ». C'est exactement ce qu'on colle dans Claude Code.",
+  prompt: `/shortforge
+
+Format : TOP 3.
+Thème : automatiser sa prospection en freelance
+Outils : 1) Apollo 2) Lemlist 3) n8n
+Mot-clé CTA : PROSPECT
+
+Structure narration (100-115 mots) :
+1. Hook — "3 outils pour automatiser sa prospection, le 3e est celui que j'utilise tous les jours."
+2. Trois blocs de ~6s : nom, ce qu'il fait, pour qui, un chiffre (prix ou temps gagné).
+   - Apollo : base de 275 millions de contacts, pour trouver les emails. 49 $/mois.
+   - Lemlist : séquences d'emails à froid avec relances automatiques. 69 $/mois.
+   - n8n : relie les deux et déclenche tout seul. Gratuit en auto-hébergé.
+3. Verdict — n8n gagne parce qu'il remplace les abonnements au lieu de s'ajouter à eux : une fois le
+   workflow branché, la prospection tourne sans que tu ouvres un onglet. 6 heures par semaine récupérées.
+4. CTA — le workflow est gratuit, commente le mot PROSPECT.
+
+DIRECTION ARTISTIQUE : PASTEL DOUX.
+Palette : fonds pastel #fdf2f8 / #eef2ff, accents lavande #a78bfa et miel #fbbf24, ombres colorées très diffuses.
+Police : sans-serif ronde (Nunito / Poppins), graisse 600, coins arrondis 24px partout.
+Captions : pilule arrondie pastel, texte gris foncé, mot actif en lavande.
+Animation : easing moelleux (spring, damping élevé), échelle 0.9 → 1, éléments qui flottent doucement en boucle, transitions par fondu croisé. Rien d'agressif, rien de rapide.
+Numéro actif de chaque carte en lavande #a78bfa (remplace le jaune du style par défaut).`
+};
+
 // Directions artistiques interchangeables.
 // Le bloc `prompt` se colle À LA SUITE d'un template de format et remplace ses consignes visuelles.
 window.STYLES = [
