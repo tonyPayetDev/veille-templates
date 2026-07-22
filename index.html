@@ -114,17 +114,23 @@ pre b{color:var(--o);font-weight:600}
 </section>
 <div class="filters" id="filters"></div>
 <main id="grid"></main>
-<script src="templates.js"></script>
+<script src="templates.js?v=3"></script>
 <script>
 const grid=document.getElementById('grid'),filters=document.getElementById('filters'),
       srow=document.getElementById('srow'),sdesc=document.getElementById('sdesc');
+// garde-fou : si un fichier templates.js périmé est servi depuis le cache, on
+// affiche les formats sans DA plutôt que de planter et de laisser la page vide
+window.STYLES=window.STYLES||[{id:"default",name:"Style par défaut",swatch:["#FFE600"],desc:"",prompt:""}];
+window.EXAMPLE=window.EXAMPLE||null;
 const tags=['Tous',...new Set(TEMPLATES.map(t=>t.tag))];
 let active='Tous',style=STYLES[0];
 const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 const full=t=>t.prompt+'\n\n'+style.prompt+'\n(Cette direction artistique remplace les consignes visuelles ci-dessus.)';
-document.getElementById('extitle').textContent=EXAMPLE.title;
-document.getElementById('exnote').textContent=EXAMPLE.note;
-document.getElementById('expre').textContent=EXAMPLE.prompt;
+if(EXAMPLE){
+  document.getElementById('extitle').textContent=EXAMPLE.title;
+  document.getElementById('exnote').textContent=EXAMPLE.note;
+  document.getElementById('expre').textContent=EXAMPLE.prompt;
+}else document.getElementById('example').style.display='none';
 function render(){
   srow.innerHTML=STYLES.map(s=>`<button class="sbtn ${s.id===style.id?'on':''}" data-s="${s.id}"><span class="dots">${s.swatch.map(c=>`<i style="background:${c}"></i>`).join('')}</span>${s.name}</button>`).join('');
   sdesc.textContent=style.desc;
