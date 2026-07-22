@@ -24,6 +24,21 @@ pre{margin:0;background:#0e0e12;border:1px solid var(--line);border-radius:10px;
 pre b{color:var(--o);font-weight:600}
 .copy{background:var(--y);color:#111;border:0;border-radius:9px;padding:9px;font-weight:700;cursor:pointer}
 .copy.done{background:var(--v);color:#fff}
+.offer{max-width:1100px;margin:8px auto 0;padding:0 24px;display:grid;gap:18px;grid-template-columns:1fr 1fr}
+@media(max-width:760px){.offer{grid-template-columns:1fr}}
+.offer-main,.offer-docs{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+.offer-main{border-color:var(--y)}
+.badge{display:inline-block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:var(--y);color:#111;font-weight:700;border-radius:99px;padding:3px 10px}
+.offer h2{margin:12px 0 8px;font-size:24px}
+.offer p{margin:0 0 10px;color:var(--dim);font-size:14px}
+.price strong{color:var(--txt);font-size:18px}
+.btn{display:inline-block;background:var(--y);color:#111;font-weight:700;text-decoration:none;padding:11px 18px;border-radius:10px}
+.offer-docs details{border-top:1px solid var(--line);padding:10px 0}
+.offer-docs details:first-child{border-top:0;padding-top:0}
+.offer-docs summary{cursor:pointer;font-weight:600;font-size:14px}
+.offer-docs ol{margin:10px 0 0;padding-left:18px;color:var(--dim);font-size:13px}
+.offer-docs li{margin-bottom:6px}
+.offer-docs code{background:#0e0e12;border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:12px;color:var(--o)}
 .styles{max-width:1100px;margin:28px auto 0;padding:0 24px}
 .styles h3{margin:0 0 4px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
 .styles p.hint{margin:0 0 12px;font-size:13px;color:var(--dim)}
@@ -40,6 +55,46 @@ pre b{color:var(--o);font-weight:600}
   <h1>Templates vidéo <span>avatar</span></h1>
   <p class="sub">Choisis un format + une direction artistique, copie, remplace les {{VARIABLES}}, colle dans Claude Code.</p>
 </header>
+<section class="offer">
+  <div class="offer-main">
+    <span class="badge">Skill payant</span>
+    <h2>veille-to-avatar</h2>
+    <p>Le moteur derrière toutes ces vidéos : script → voix clonée → avatar fixe → captions animées → MP4 1080×1920 prêt à publier. Les prompts ci-dessous ne servent à rien sans lui.</p>
+    <p class="price"><strong>{{PRIX}}</strong> · licence perso, mises à jour incluses</p>
+    <a class="btn" href="{{LIEN_ACHAT}}">Obtenir le skill</a>
+  </div>
+  <div class="offer-docs">
+    <details open>
+      <summary>Installation</summary>
+      <ol>
+        <li>Télécharge l'archive après l'achat, dézippe-la.</li>
+        <li>Copie le dossier <code>veille-to-avatar/</code> dans <code>.claude/skills/</code> de ton projet (ou <code>~/.claude/skills/</code> pour l'avoir partout).</li>
+        <li>Relance Claude Code, puis tape <code>/veille-to-avatar</code> — le skill doit apparaître dans la liste.</li>
+        <li>Renseigne ta clé <code>WAVESPEED_API_KEY</code> dans <code>.claude/settings.json</code>, section <code>env</code>.</li>
+      </ol>
+    </details>
+    <details>
+      <summary>La voix (clonage)</summary>
+      <ol>
+        <li>Enregistre <strong>20 à 40 s</strong> de ta voix, au calme, sans musique ni respiration coupée. Format WAV mono, 44.1 kHz.</li>
+        <li>Range le fichier dans <code>assets/voice-reference-clean.wav</code> du projet.</li>
+        <li>Le skill appelle le modèle <code>wavespeed-ai/qwen3-tts/voice-clone</code> avec ce fichier comme référence.</li>
+        <li>Débit réel ≈ <strong>3,3 mots/seconde</strong> : vise 100-115 mots pour une vidéo de 25-35 s. Si c'est trop long, réécris le script et régénère — n'accélère jamais l'audio, ça s'entend.</li>
+        <li>Les sigles et mots-clés du CTA se prononcent mal : écris-les phonétiquement dans le script vocal (le texte à l'écran, lui, reste correct).</li>
+      </ol>
+    </details>
+    <details>
+      <summary>L'avatar fixe</summary>
+      <ol>
+        <li>Filme <strong>une seule prise de 30-60 s</strong>, cadrage buste, regard caméra, fond uni (vert ou mur clair), lumière frontale.</li>
+        <li>Place le fichier dans <code>assets/avatar.mp4</code>. Le skill le boucle sur toute la durée de la vidéo — pas besoin de retourner filmer par script.</li>
+        <li>Fond vert : le détourage se fait au filtre <code>geq</code> (pas <code>chromakey</code>), avec correction du canal vert pour supprimer le liseré.</li>
+        <li>L'avatar est ancré <strong>en bas de cadre</strong> et ne doit jamais chevaucher les captions ni le texte animé.</li>
+        <li>Coupe la première seconde si tu clignes des yeux au démarrage — un clignement sur la frame d'ouverture casse le hook.</li>
+      </ol>
+    </details>
+  </div>
+</section>
 <section class="styles">
   <h3>Direction artistique</h3>
   <p class="hint">Elle est ajoutée automatiquement au prompt que tu copies.</p>
