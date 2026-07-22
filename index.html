@@ -65,36 +65,15 @@ pre b{color:var(--o);font-weight:600}
     <a class="btn" href="vente.html">Découvrir ShortForge</a>
   </div>
   <div class="offer-docs">
-    <details open>
-      <summary>Installation</summary>
-      <ol>
-        <li>Télécharge l'archive après l'achat, dézippe-la.</li>
-        <li>Copie le dossier <code>shortforge/</code> dans <code>.claude/skills/</code> de ton projet (ou <code>~/.claude/skills/</code> pour l'avoir partout).</li>
-        <li>Relance Claude Code, puis tape <code>/shortforge</code> — le skill doit apparaître dans la liste.</li>
-        <li>Renseigne ta clé <code>WAVESPEED_API_KEY</code> dans <code>.claude/settings.json</code>, section <code>env</code>.</li>
-        <li>Prérequis : Node 20+, <code>npx hyperframes init</code> puis <code>npx hyperframes doctor</code>, Chrome headless (<code>npx hyperframes browser install</code>) et ffmpeg.</li>
-      </ol>
-    </details>
-    <details>
-      <summary>La voix (clonage)</summary>
-      <ol>
-        <li>Enregistre <strong>20 à 40 s</strong> de ta voix, au calme, sans musique ni respiration coupée. Format WAV mono, 44.1 kHz.</li>
-        <li>Range le fichier dans <code>assets/voice-reference-clean.wav</code> du projet.</li>
-        <li>Le skill appelle le modèle <code>wavespeed-ai/qwen3-tts/voice-clone</code> avec ce fichier comme référence.</li>
-        <li>Débit réel ≈ <strong>3,3 mots/seconde</strong> : vise 100-115 mots pour une vidéo de 25-35 s. Si c'est trop long, réécris le script et régénère — n'accélère jamais l'audio, ça s'entend.</li>
-        <li>Les sigles et mots-clés du CTA se prononcent mal : écris-les phonétiquement dans le script vocal (le texte à l'écran, lui, reste correct).</li>
-      </ol>
-    </details>
-    <details>
-      <summary>L'avatar fixe</summary>
-      <ol>
-        <li>Filme <strong>une seule prise de 30-60 s</strong>, cadrage buste, regard caméra, fond uni (vert ou mur clair), lumière frontale.</li>
-        <li>Place le fichier dans <code>assets/avatar.mp4</code>. Le skill le boucle sur toute la durée de la vidéo — pas besoin de retourner filmer par script.</li>
-        <li>Fond vert : le détourage se fait au filtre <code>geq</code> (pas <code>chromakey</code>), avec correction du canal vert pour supprimer le liseré.</li>
-        <li>L'avatar est ancré <strong>en bas de cadre</strong> et ne doit jamais chevaucher les captions ni le texte animé.</li>
-        <li>Coupe la première seconde si tu clignes des yeux au démarrage — un clignement sur la frame d'ouverture casse le hook.</li>
-      </ol>
-    </details>
+    <p style="margin-top:0"><strong style="color:var(--txt)">Ce que tu reçois après l'achat</strong></p>
+    <ul style="margin:0;padding-left:18px;color:var(--dim);font-size:13px">
+      <li style="margin-bottom:6px">L'archive du skill, à déposer dans <code>.claude/skills/</code></li>
+      <li style="margin-bottom:6px">Le guide d'installation pas à pas</li>
+      <li style="margin-bottom:6px">La procédure d'enregistrement de ta voix de référence</li>
+      <li style="margin-bottom:6px">La procédure de tournage de ton avatar et son détourage</li>
+      <li>Le <code>config.json</code> à tes couleurs</li>
+    </ul>
+    <p style="margin:14px 0 0;font-size:13px"><a href="vente.html" style="color:var(--y)">Voir les prérequis techniques →</a></p>
   </div>
 </section>
 <section class="styles" id="example">
