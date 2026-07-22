@@ -69,11 +69,23 @@ function render(){
       <button class="copy" data-id="${t.id}">Copier le prompt</button>
     </article>`).join('');
 }
+// clipboard API indisponible hors HTTPS -> fallback textarea + execCommand
+function copy(txt){
+  if(navigator.clipboard&&window.isSecureContext) return navigator.clipboard.writeText(txt).catch(()=>legacy(txt));
+  legacy(txt);
+}
+function legacy(txt){
+  const ta=document.createElement('textarea');
+  ta.value=txt;ta.style.cssText='position:fixed;top:0;left:0;opacity:0';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy')}catch(e){}
+  document.body.removeChild(ta);
+}
 document.addEventListener('click',e=>{
   const s=e.target.closest('[data-s]'); if(s){style=STYLES.find(x=>x.id===s.dataset.s);render();return;}
   const f=e.target.closest('[data-t]'); if(f){active=f.dataset.t;render();return;}
   const c=e.target.closest('.copy'); if(!c)return;
-  navigator.clipboard.writeText(full(TEMPLATES.find(t=>t.id===c.dataset.id)));
+  copy(full(TEMPLATES.find(t=>t.id===c.dataset.id)));
   c.textContent='Copié ✓';c.classList.add('done');
   setTimeout(()=>{c.textContent='Copier le prompt';c.classList.remove('done')},1500);
 });
