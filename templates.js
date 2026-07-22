@@ -216,3 +216,119 @@ Structure narration (100-115 mots) :
 Visuels : captures de l'annonce officielle en b-roll, avatar en bas, chiffres clés en néon violet.`
   }
 ];
+
+// Directions artistiques interchangeables.
+// Le bloc `prompt` se colle À LA SUITE d'un template de format et remplace ses consignes visuelles.
+window.STYLES = [
+  {
+    id: "neon-autoboost",
+    name: "Neon Autoboost",
+    swatch: ["#0b0b0d", "#FFE600", "#A855F7"],
+    desc: "La charte maison. Matte black dégradé, accents néon, captions TikTok.",
+    prompt: `DIRECTION ARTISTIQUE : NEON AUTOBOOST (charte maison).
+Palette : fond gris/violet dégradé (jamais noir plat), accent jaune #FFE600, secondaires violet #A855F7 et orange #FF8A3D.
+Police : Sora / Inter, graisses 700-900, tracking serré, majuscules sur les titres.
+Captions : TikTok mot-à-mot, 27px, une ligne, 3 mots max, un seul mot actif en néon avec glow.
+Animation : slide + scale rapide (0.25s, ease-out), glow pulse sur le mot actif, transitions par wipe latéral.`
+  },
+  {
+    id: "editorial",
+    name: "Éditorial print",
+    swatch: ["#f4f1ea", "#111111", "#c0392b"],
+    desc: "Magazine papier : serif, crème, filets fins, tout respire.",
+    prompt: `DIRECTION ARTISTIQUE : ÉDITORIAL PRINT.
+Palette : fond crème #f4f1ea, texte encre #111, un seul accent rouge brique #c0392b. Pas de glow, pas de néon.
+Police : serif éditoriale (Playfair Display / Instrument Serif) pour les titres, sans-serif fine (Inter 400) pour le corps. Grandes marges, filets 1px.
+Captions : bas de cadre, sans-serif 24px, minuscules, pas de contour — un simple fond crème translucide.
+Animation : lente et sobre — fade + montée 12px (0.6s, ease-in-out), mots des titres qui arrivent un par un, aucune rotation ni rebond.`
+  },
+  {
+    id: "brutalist",
+    name: "Brutalist mono",
+    swatch: ["#ffffff", "#000000", "#0000ff"],
+    desc: "Grille apparente, monospace, blocs noirs, zéro décoration.",
+    prompt: `DIRECTION ARTISTIQUE : BRUTALIST MONO.
+Palette : blanc pur, noir pur, un bleu système #0000ff. Bordures noires 3px, aucun arrondi, aucune ombre.
+Police : monospace (JetBrains Mono / Courier), MAJUSCULES, tracking large sur les labels.
+Captions : bloc noir plein, texte blanc mono, aligné à gauche, collé au bord.
+Animation : coupes sèches, aucun easing progressif — apparitions en 1 frame, décalages de grille, effet "typewriter" sur les titres, compteurs qui défilent en chiffres bruts.`
+  },
+  {
+    id: "swiss",
+    name: "Swiss minimal",
+    swatch: ["#ffffff", "#1a1a1a", "#ff3b30"],
+    desc: "Helvetica, grille stricte, beaucoup de blanc, un seul rouge.",
+    prompt: `DIRECTION ARTISTIQUE : SWISS MINIMAL.
+Palette : blanc, gris #1a1a1a, accent rouge #ff3b30 utilisé une fois par scène maximum.
+Police : Helvetica Now / Inter Tight, graisse 500-700, alignement à gauche, grille 12 colonnes visible dans la composition.
+Captions : haut de cadre ou tiers inférieur strict, texte noir sur blanc, pas d'effet.
+Animation : masques rectangulaires qui révèlent le texte (0.4s, cubic-bezier(.2,.8,.2,1)), déplacements toujours sur un seul axe, rien ne tourne, rien ne rebondit.`
+  },
+  {
+    id: "terminal",
+    name: "Dark terminal",
+    swatch: ["#0d1117", "#3ddc84", "#ff6b6b"],
+    desc: "Console dev : fond charbon, vert phosphore, curseur clignotant.",
+    prompt: `DIRECTION ARTISTIQUE : DARK TERMINAL.
+Palette : fond #0d1117, texte gris clair #c9d1d9, accent vert #3ddc84, erreurs en rouge #ff6b6b.
+Police : monospace (JetBrains Mono), prompts \`$\` devant les titres, numéros de ligne dans la marge.
+Captions : en bas, style ligne de commande, curseur bloc qui clignote en fin de phrase.
+Animation : frappe caractère par caractère sur les titres, scroll de logs en fond, apparitions par ligne, glitch très bref (2 frames) sur les transitions. Pas de fondu doux.`
+  },
+  {
+    id: "y2k",
+    name: "Y2K chrome",
+    swatch: ["#c9d6ff", "#e2e2e2", "#ff2fb9"],
+    desc: "Chrome liquide, dégradés bleutés, gros titres bombés.",
+    prompt: `DIRECTION ARTISTIQUE : Y2K CHROME.
+Palette : dégradés bleu-argent #c9d6ff → #e2e2e2, accent rose fluo #ff2fb9, reflets métalliques.
+Police : grotesque très grasse (Anton / Archivo Black) avec effet chrome (dégradé vertical + contour blanc), légères déformations bombées.
+Captions : centrées, texte chrome avec contour, léger tremblement permanent.
+Animation : rebond élastique (overshoot 15%), rotations 3D légères des cartes, étoiles/scintillements ponctuels, transitions par zoom avant rapide.`
+  },
+  {
+    id: "vhs",
+    name: "VHS rétro",
+    swatch: ["#1b1b2f", "#ff4d6d", "#4deeea"],
+    desc: "Bande analogique : scanlines, aberration chromatique, timecode.",
+    prompt: `DIRECTION ARTISTIQUE : VHS RÉTRO.
+Palette : bleu nuit #1b1b2f, magenta #ff4d6d, cyan #4deeea. Grain, scanlines fines, léger vignettage.
+Police : sans-serif condensée façon OSD caméscope, plus un timecode \`00:00:12:04\` en haut à droite et un label \`REC ●\`.
+Captions : blanches avec ombre portée dure, légère aberration chromatique rouge/cyan.
+Animation : tracking jitter vertical toutes les 2-3s, transitions par déchirure horizontale, images qui "s'accrochent" une frame, aucun mouvement parfaitement lisse.`
+  },
+  {
+    id: "pastel",
+    name: "Pastel doux",
+    swatch: ["#fdf2f8", "#a78bfa", "#fbbf24"],
+    desc: "Fonds pastel, formes rondes, motion moelleux. Ton pédago et accessible.",
+    prompt: `DIRECTION ARTISTIQUE : PASTEL DOUX.
+Palette : fonds pastel #fdf2f8 / #eef2ff, accents lavande #a78bfa et miel #fbbf24, ombres colorées très diffuses.
+Police : sans-serif ronde (Nunito / Poppins), graisse 600, coins arrondis 24px partout.
+Captions : pilule arrondie pastel, texte gris foncé, mot actif en lavande.
+Animation : easing moelleux (spring, damping élevé), échelle 0.9 → 1, éléments qui flottent doucement en boucle, transitions par fondu croisé. Rien d'agressif, rien de rapide.`
+  },
+  {
+    id: "luxe",
+    name: "Luxe or & noir",
+    swatch: ["#0a0a0a", "#c9a227", "#f5f5f0"],
+    desc: "Haut de gamme : noir profond, filets or, typo fine espacée.",
+    prompt: `DIRECTION ARTISTIQUE : LUXE OR & NOIR.
+Palette : noir profond #0a0a0a, or #c9a227 en filets et bordures uniquement, ivoire #f5f5f0 pour le texte.
+Police : serif haute (Cormorant / Didot) en titres, tracking très large (0.25em) sur les sous-titres en petites capitales.
+Captions : discrètes, ivoire, sans fond, en bas de cadre.
+Animation : très lente — révélations par masque horizontal (0.9s), filets or qui se tracent, léger parallax des fonds, aucun rebond, aucune vitesse.`
+  },
+  {
+    id: "papercut",
+    name: "Papier découpé",
+    swatch: ["#fef6e4", "#f582ae", "#001858"],
+    desc: "Collage : couches de papier, ombres portées nettes, textures.",
+    prompt: `DIRECTION ARTISTIQUE : PAPIER DÉCOUPÉ.
+Palette : papier crème #fef6e4, rose #f582ae, bleu encre #001858. Textures papier visibles, ombres portées dures et décalées (4px).
+Police : sans-serif géométrique grasse (Poppins 800), titres posés de travers de 2-3°.
+Captions : étiquette papier avec ombre portée, texte bleu encre.
+Animation : les éléments sont "posés" (chute courte + petit rebond, 0.3s), découpes qui glissent depuis le hors-champ, transitions par superposition de couches. Motion stop-motion : privilégier des paliers plutôt qu'un mouvement continu.`
+  }
+];
+

@@ -24,36 +24,56 @@ pre{margin:0;background:#0e0e12;border:1px solid var(--line);border-radius:10px;
 pre b{color:var(--o);font-weight:600}
 .copy{background:var(--y);color:#111;border:0;border-radius:9px;padding:9px;font-weight:700;cursor:pointer}
 .copy.done{background:var(--v);color:#fff}
+.styles{max-width:1100px;margin:28px auto 0;padding:0 24px}
+.styles h3{margin:0 0 4px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.styles p.hint{margin:0 0 12px;font-size:13px;color:var(--dim)}
+.srow{display:flex;gap:8px;flex-wrap:wrap}
+.sbtn{background:var(--card);border:1px solid var(--line);color:var(--txt);border-radius:11px;padding:8px 12px;cursor:pointer;display:flex;align-items:center;gap:8px;font-size:13px}
+.sbtn.on{border-color:var(--y)}
+.dots{display:flex}
+.dots i{width:11px;height:11px;border-radius:50%;display:block;margin-right:-4px;border:1px solid #0006}
+.sdesc{margin:10px 0 0;font-size:13px;color:var(--dim)}
 </style>
 </head>
 <body>
 <header>
   <h1>Templates vidéo <span>avatar</span></h1>
-  <p class="sub">Copie un prompt, remplace les {{VARIABLES}}, colle-le dans Claude Code. Même style de vidéo tuto avatar à chaque fois.</p>
+  <p class="sub">Choisis un format + une direction artistique, copie, remplace les {{VARIABLES}}, colle dans Claude Code.</p>
 </header>
+<section class="styles">
+  <h3>Direction artistique</h3>
+  <p class="hint">Elle est ajoutée automatiquement au prompt que tu copies.</p>
+  <div class="srow" id="srow"></div>
+  <p class="sdesc" id="sdesc"></p>
+</section>
 <div class="filters" id="filters"></div>
 <main id="grid"></main>
 <script src="templates.js"></script>
 <script>
-const grid=document.getElementById('grid'),filters=document.getElementById('filters');
+const grid=document.getElementById('grid'),filters=document.getElementById('filters'),
+      srow=document.getElementById('srow'),sdesc=document.getElementById('sdesc');
 const tags=['Tous',...new Set(TEMPLATES.map(t=>t.tag))];
-let active='Tous';
+let active='Tous',style=STYLES[0];
 const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const full=t=>t.prompt+'\n\n'+style.prompt+'\n(Cette direction artistique remplace les consignes visuelles ci-dessus.)';
 function render(){
+  srow.innerHTML=STYLES.map(s=>`<button class="sbtn ${s.id===style.id?'on':''}" data-s="${s.id}"><span class="dots">${s.swatch.map(c=>`<i style="background:${c}"></i>`).join('')}</span>${s.name}</button>`).join('');
+  sdesc.textContent=style.desc;
   filters.innerHTML=tags.map(t=>`<button class="${t===active?'on':''}" data-t="${t}">${t}</button>`).join('');
   grid.innerHTML=TEMPLATES.filter(t=>active==='Tous'||t.tag===active).map(t=>`
     <article class="card">
       <span class="tag">${t.tag}</span>
       <h2>${t.name}</h2>
       <p class="desc">${t.desc}</p>
-      <pre>${esc(t.prompt).replace(/\{\{[A-Z0-9_]+\}\}/g,m=>'<b>'+m+'</b>')}</pre>
+      <pre>${esc(full(t)).replace(/\{\{[A-Z0-9_]+\}\}/g,m=>'<b>'+m+'</b>')}</pre>
       <button class="copy" data-id="${t.id}">Copier le prompt</button>
     </article>`).join('');
 }
 document.addEventListener('click',e=>{
+  const s=e.target.closest('[data-s]'); if(s){style=STYLES.find(x=>x.id===s.dataset.s);render();return;}
   const f=e.target.closest('[data-t]'); if(f){active=f.dataset.t;render();return;}
   const c=e.target.closest('.copy'); if(!c)return;
-  navigator.clipboard.writeText(TEMPLATES.find(t=>t.id===c.dataset.id).prompt);
+  navigator.clipboard.writeText(full(TEMPLATES.find(t=>t.id===c.dataset.id)));
   c.textContent='Copié ✓';c.classList.add('done');
   setTimeout(()=>{c.textContent='Copier le prompt';c.classList.remove('done')},1500);
 });
