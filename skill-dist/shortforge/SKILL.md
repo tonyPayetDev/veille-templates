@@ -54,6 +54,20 @@ néon jaune/violet/orange). Elle est éprouvée et lisible en feed mobile, mais 
 changer les quatre valeurs suffit à rehabiller toute la vidéo, aucune autre partie de la méthode
 n'en dépend.
 
+### Prérequis — clés d'API (variables d'environnement)
+
+ShortForge est **autonome** : il ne dépend d'aucun serveur ni webhook tiers hébergé par quelqu'un
+d'autre. Il appelle seulement des API que tu configures toi-même avec tes propres clés, passées en
+variables d'environnement (jamais en dur dans un fichier, jamais journalisées) :
+
+| Variable | Sert à | Étape |
+|---|---|---|
+| `WAVESPEED_API_KEY` | Clonage de voix (WaveSpeed Qwen3 TTS) → génère `voice.mp3`. | Étape 4 |
+| `OPENAI_API_KEY` | Transcription mot-à-mot (Whisper API) pour caler les captions. **Optionnel** si tu utilises un Whisper local ou le calage manuel. | Étape 4 |
+
+Le reste du pipeline (HyperFrames, rendu, ffmpeg) tourne **en local**, sans réseau. Aucun autre
+secret n'est requis.
+
 ---
 
 ## Style de sortie
@@ -189,15 +203,38 @@ curl -s -X POST "https://api.wavespeed.ai/api/v3/wavespeed-ai/qwen3-tts/voice-cl
 
 Sauvegarder le MP3 dans le projet sous `public/assets/voice.mp3`.
 
-**Transcription mot-à-mot (pour des captions calées au mot).** Deux voies :
-1. `npx hyperframes transcribe public/assets/voice.mp3 --language fr --json` — nécessite un backend
-   Whisper local (`whisper-cpp` ou `parakeet-mlx`). S'il est absent, la commande échoue proprement
-   avec `{"ok":false,"skipped":true,"reason":"whisper_unavailable"}`.
-2. Whisper via API (`whisper-1`, `timestamp_granularities: ["word"]`), puis regrouper les mots par
-   paquets de 2-3 avec un `start`/`end` par paquet.
+**Transcription mot-à-mot (pour des captions calées au mot).** Le pipeline est **autonome** : il
+n'appelle aucun service tiers hébergé par un autre que toi. La transcription se fait directement,
+par ordre de préférence :
 
-À défaut de timestamps réels, synchroniser manuellement les captions sur la narration en écoutant
-l'audio — mais les timestamps réels valent largement l'aller-retour.
+**1. API Whisper (méthode principale, la plus fiable).** Envoyer le MP3 à l'API OpenAI `whisper-1`
+en demandant les timestamps au mot. Ne nécessite qu'une clé API en variable d'environnement
+(`OPENAI_API_KEY`), jamais un serveur intermédiaire.
+
+```bash
+curl -s -X POST "https://api.openai.com/v1/audio/transcriptions" \
+  -H "Authorization: Bearer ${OPENAI_API_KEY}" \
+  -F file="@public/assets/voice.mp3" \
+  -F model="whisper-1" \
+  -F language="fr" \
+  -F "response_format=verbose_json" \
+  -F "timestamp_granularities[]=word"
+```
+
+La réponse contient un tableau `words` avec un `word` + `start` + `end` (en secondes) par mot.
+Regrouper ensuite les mots par paquets de 2-3, en prenant le `start` du premier mot et le `end` du
+dernier de chaque paquet → une entrée de caption. C'est cette liste `{text, start, end}` que la
+timeline GSAP consomme pour révéler chaque caption pile sur la voix.
+
+**2. Whisper local (optionnel, si déjà installé — évite l'appel API).**
+`npx hyperframes transcribe public/assets/voice.mp3 --language fr --json` — nécessite un backend
+Whisper local (`whisper-cpp` ou `parakeet-mlx`). S'il est absent, la commande échoue proprement avec
+`{"ok":false,"skipped":true,"reason":"whisper_unavailable"}` : ce n'est pas une erreur, bascule
+simplement sur la méthode 1.
+
+**3. Calage manuel (dernier recours).** À défaut de timestamps réels, synchroniser les captions à la
+main en écoutant l'audio et en estimant au débit (voir Étape 1) — mais les timestamps réels valent
+largement l'aller-retour.
 
 ### Étape 5 — Construire `public/index.html` (HyperFrames)
 
