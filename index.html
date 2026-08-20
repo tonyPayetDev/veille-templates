@@ -91,13 +91,29 @@ p.hint{margin:0 0 18px;font-size:14px;color:var(--dim);max-width:680px}
 @media(max-width:860px){.offer,.ex{grid-template-columns:1fr}.ex-meta{position:static}h1{font-size:33px}p.sub{font-size:16px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}.reveal{opacity:1;transform:none}}
 
-.rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:14px;margin-top:22px}
+/* Desktop : grille. Mobile : carrousel horizontal — cinq cartes 9:16 empilees
+   en une colonne donnaient un defilement interminable. */
+.rgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:22px}
 .rc{margin:0;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
 .rc video{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;background:#000}
 .rc figcaption{padding:11px 13px;display:flex;flex-direction:column;gap:3px}
 .rc figcaption b{font-size:14px;color:var(--txt)}
 .rc figcaption span{font-size:12.5px;color:var(--dim);line-height:1.4}
+
+@media (max-width:900px){
+  /* Le carrousel deborde volontairement des marges de section pour que la
+     carte suivante affleure : c est ce qui fait comprendre qu on peut glisser. */
+  .rgrid{display:flex;grid-template-columns:none;overflow-x:auto;scroll-snap-type:x mandatory;
+         -webkit-overflow-scrolling:touch;gap:12px;padding:0 18px 6px;margin-left:-18px;
+         margin-right:-18px;scrollbar-width:none}
+  .rgrid::-webkit-scrollbar{display:none}
+  .rc{flex:0 0 68%;max-width:280px;scroll-snap-align:center}
+}
+@media (max-width:420px){ .rc{flex:0 0 74%} }
+
 @media (prefers-reduced-motion:reduce){.rc video{animation:none}}
+.swipe-hint{display:none;font-size:12.5px}
+@media (max-width:900px){.swipe-hint{display:block}}
 </style>
 </head>
 <body>
@@ -168,7 +184,8 @@ p.hint{margin:0 0 18px;font-size:14px;color:var(--dim);max-width:680px}
         <figcaption><b>Éditorial premium</b><span>Clair, minimaliste, esprit keynote.</span></figcaption>
       </figure>
   </div>
-  <p class="hint" style="margin-top:18px">Le son est coupé sur ces aperçus. Chaque vidéo complète contient voix clonée, avatar et sous-titres synchronisés.</p>
+  <p class="hint swipe-hint" style="margin-top:14px">Glisse pour voir les cinq →</p>
+  <p class="hint" style="margin-top:10px">Le son est coupé sur ces aperçus. Chaque vidéo complète contient voix clonée, avatar et sous-titres synchronisés.</p>
 </section>
 
 <section class="reveal" id="example">
