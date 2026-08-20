@@ -93,7 +93,7 @@ p.hint{margin:0 0 18px;font-size:14px;color:var(--dim);max-width:680px}
 
 /* Desktop : grille. Mobile : carrousel horizontal — cinq cartes 9:16 empilees
    en une colonne donnaient un defilement interminable. */
-.rgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:22px}
+.rgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:22px}
 .rc{margin:0;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
 .rc video{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;background:#000}
 .rc figcaption{padding:11px 13px;display:flex;flex-direction:column;gap:3px}
@@ -156,8 +156,13 @@ p.hint{margin:0 0 18px;font-size:14px;color:var(--dim);max-width:680px}
 <section class="reveal" id="rendus">
   <p class="eyebrow">Rendus réels</p>
   <h2 class="sec">Ce que ça sort, vraiment</h2>
-  <p class="hint">Cinq extraits de vidéos réellement produites et publiées avec ce système. Aucun rendu fabriqué pour cette page, aucune image de stock.</p>
+  <p class="hint">Six extraits de vidéos réellement produites et publiées avec ce système. Aucun rendu fabriqué pour cette page, aucune image de stock.</p>
   <div class="rgrid">
+      <figure class="rc">
+        <video src="assets/previews/storytime-terminal.mp4" poster="assets/previews/storytime-terminal.jpg"
+               autoplay muted loop playsinline preload="none" aria-hidden="true"></video>
+        <figcaption><b>Storytime — Dark terminal</b><span>Anecdote vécue, racontée en console.</span></figcaption>
+      </figure>
       <figure class="rc">
         <video src="assets/previews/cybernetique.mp4" poster="assets/previews/cybernetique.jpg"
                autoplay muted loop playsinline preload="none" aria-hidden="true"></video>
@@ -184,7 +189,7 @@ p.hint{margin:0 0 18px;font-size:14px;color:var(--dim);max-width:680px}
         <figcaption><b>Éditorial premium</b><span>Clair, minimaliste, esprit keynote.</span></figcaption>
       </figure>
   </div>
-  <p class="hint swipe-hint" style="margin-top:14px">Glisse pour voir les cinq →</p>
+  <p class="hint swipe-hint" style="margin-top:14px">Glisse pour voir les six →</p>
   <p class="hint" style="margin-top:10px">Le son est coupé sur ces aperçus. Chaque vidéo complète contient voix clonée, avatar et sous-titres synchronisés.</p>
 </section>
 
