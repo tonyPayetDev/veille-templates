@@ -70,6 +70,14 @@ code{background:var(--card);border:1px solid var(--line);border-radius:5px;paddi
 .price small{font-size:16px;font-weight:400;color:var(--dim)}
 footer{padding:40px 0 80px;color:var(--dim);font-size:13px}
 footer a{color:var(--y)}
+
+.preuve .sorties{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin:22px 0 14px}
+.preuve figure{margin:0}
+.preuve .sorties img{width:100%;aspect-ratio:9/16;object-fit:cover;display:block;
+  border-radius:8px;border:1px solid var(--line)}
+.preuve figcaption{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim);
+  margin-top:8px;text-align:center;font-weight:600}
+@media(max-width:700px){.preuve .sorties{grid-template-columns:repeat(3,1fr);gap:8px}}
 </style>
 </head>
 <body>
@@ -86,6 +94,21 @@ footer a{color:var(--y)}
   <p class="note">Prix fondateur : 20 places, puis 97 €. Paiement unique, mises à jour incluses. Tourne dans ton Claude Code, sur ta machine.</p>
 </section>
 
+<section class="preuve">
+  <h2>Ce que le skill sort, pour de vrai</h2>
+  <p>Six images prises dans six vidéos réellement publiées. Aucune n'a demandé de caméra le jour
+  du tournage — la même prise de 45 secondes sert pour toutes.</p>
+  <div class="sorties">
+    <figure><img src="assets/sorties/s1.jpg" alt="Format veille" loading="lazy"><figcaption>Veille</figcaption></figure>
+    <figure><img src="assets/sorties/s2.jpg" alt="Format storytime" loading="lazy"><figcaption>Storytime</figcaption></figure>
+    <figure><img src="assets/sorties/s3.jpg" alt="Format démo produit" loading="lazy"><figcaption>Démo produit</figcaption></figure>
+    <figure><img src="assets/sorties/s4.jpg" alt="Format comparatif" loading="lazy"><figcaption>Comparatif</figcaption></figure>
+    <figure><img src="assets/sorties/s5.jpg" alt="Format étude de cas" loading="lazy"><figcaption>Étude de cas</figcaption></figure>
+    <figure><img src="assets/sorties/s6.jpg" alt="Format vitrine" loading="lazy"><figcaption>Vitrine</figcaption></figure>
+  </div>
+  <p class="note">Six formats sur les dix. Même skill, même avatar, même voix — seule la
+  direction artistique change.</p>
+</section>
 <section>
   <h2>Le vrai problème n'est pas la création. C'est la répétition.</h2>
   <p>Faire une belle vidéo, tu sais faire. En faire <b style="color:var(--txt)">vingt d'affilée, au même niveau, sans y passer tes soirées</b> — c'est là que tout le monde décroche. Le compte s'éteint après huit posts.</p>
