@@ -2,6 +2,24 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1713977213196523');fbq('track','PageView');
+/* Un clic vers Stripe est le seul signal d'intention d'achat mesurable ici :
+   la page de paiement est hors du domaine, on ne peut pas y poser le pixel. */
+document.addEventListener('click',function(e){
+  var a=e.target.closest&&e.target.closest('a[href*="buy.stripe.com"]');
+  if(a&&window.fbq)fbq('track','InitiateCheckout');
+},true);
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1713977213196523&ev=PageView&noscript=1"></noscript>
+<!-- Fin Meta Pixel -->
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ShortForge — 100 vidéos, un seul copier-coller</title>
 <style>
