@@ -1,0 +1,96 @@
+{
+  "_note": "Les dix directions artistiques. Une direction, c'est trois choses qui changent ENSEMBLE : la palette, la typographie et le registre d'animation. Changer la palette seule donne la même vidéo repeinte — c'est le registre qui fait qu'on reconnaît une direction les yeux plissés. Pour en choisir une : copier son bloc `brandColors` dans config.json, prendre ses polices, et respecter son registre.",
+  "_contrat": "Chaque direction garantit un contraste d'au moins 4.5:1 entre `text` et `background`, et d'au moins 3:1 entre `accentPrimary` et `background` (un accent sert à attirer l'oeil, pas à porter un paragraphe).",
+  "directions": [
+    {
+      "id": "neon", "nom": "Néon", "defaut": true,
+      "pour": "Tech, automatisation, tout ce qui se lit dans un feed sombre. C'est la direction éprouvée.",
+      "brandColors": { "background": "#060606", "accentPrimary": "#FFE600", "accentSecondary": "#A855F7", "accentTertiary": "#FF8A3D" },
+      "texte": "#F4F5F8", "secondaire": "#9AA0AC",
+      "polices": { "titre": "Outfit 700", "corps": "Inter 400", "chiffres": "Outfit 700 tabular" },
+      "registre": "Coupes sèches sur le beat. Glow sur le mot actif uniquement. Une ligne néon horizontale qui pulse à chaque temps. Aucun fondu long.",
+      "fond": "Jamais un aplat : dégradé radial très sombre, teinté de l'accent, décalé d'une scène à l'autre."
+    },
+    {
+      "id": "editorial", "nom": "Éditorial",
+      "pour": "Conseil, essai, prise de parole posée. Quand le propos doit sembler écrit, pas produit.",
+      "brandColors": { "background": "#F3F0E9", "accentPrimary": "#A6432B", "accentSecondary": "#2F4A3C", "accentTertiary": "#8A7B5C" },
+      "texte": "#14130F", "secondaire": "#6B675E",
+      "polices": { "titre": "Fraunces 600", "corps": "Inter 400", "chiffres": "Fraunces 600" },
+      "registre": "Fondus longs (0,9 s), aucun mouvement brusque. Le texte monte de 18 px, jamais plus. Aucune ombre portée nulle part.",
+      "fond": "Papier crème uni. La respiration remplace les effets."
+    },
+    {
+      "id": "brutalist", "nom": "Brutalist",
+      "pour": "Opinion tranchée, annonce de prix, tout ce qui doit heurter.",
+      "brandColors": { "background": "#FFFFFF", "accentPrimary": "#FF2200", "accentSecondary": "#000000", "accentTertiary": "#0033FF" },
+      "texte": "#000000", "secondaire": "#555555",
+      "polices": { "titre": "Archivo Black", "corps": "Archivo 500", "chiffres": "Archivo Black" },
+      "registre": "AUCUNE transition. Chaque scène remplace la précédente à l'image près. Le texte est posé, pas animé. Bordures noires de 6 px, angles droits.",
+      "fond": "Blanc pur. Des blocs de couleur pleine, jamais de dégradé."
+    },
+    {
+      "id": "swiss", "nom": "Swiss",
+      "pour": "Données, comparatifs, tout ce qui doit sembler rigoureux.",
+      "brandColors": { "background": "#FAFAFA", "accentPrimary": "#E3000F", "accentSecondary": "#111111", "accentTertiary": "#8A8A8A" },
+      "texte": "#111111", "secondaire": "#6E6E6E",
+      "polices": { "titre": "Inter 700 tight", "corps": "Inter 400", "chiffres": "Inter 700 tabular" },
+      "registre": "Glissements strictement horizontaux ou verticaux, jamais en diagonale. Grille de 12 colonnes visible en filigrane. Tout s'aligne sur une ligne de base commune.",
+      "fond": "Blanc cassé. Filets d'un pixel pour séparer, jamais de cartes ombrées."
+    },
+    {
+      "id": "terminal", "nom": "Terminal",
+      "pour": "Démonstration technique, code, workflow. Le public developpeur le lit comme sa propre machine.",
+      "brandColors": { "background": "#0B0F0C", "accentPrimary": "#35FF7A", "accentSecondary": "#FFB000", "accentTertiary": "#5F6B62" },
+      "texte": "#D6E4DA", "secondaire": "#6F8177",
+      "polices": { "titre": "JetBrains Mono 700", "corps": "JetBrains Mono 400", "chiffres": "JetBrains Mono 700" },
+      "registre": "Le texte s'écrit caractère par caractère au débit de la voix, curseur qui clignote à 1,06 Hz. Les scènes défilent vers le haut comme un flux, elles ne se remplacent pas.",
+      "fond": "Vert-noir. Une grille de points très faible, une barre de titre en haut."
+    },
+    {
+      "id": "y2k", "nom": "Y2K",
+      "pour": "Sujets grand public, jeunesse, tendance. À réserver aux propos légers.",
+      "brandColors": { "background": "#10021F", "accentPrimary": "#00F0FF", "accentSecondary": "#FF00A8", "accentTertiary": "#C9D6DF" },
+      "texte": "#FFFFFF", "secondaire": "#B39DD0",
+      "polices": { "titre": "Space Grotesk 700", "corps": "Space Grotesk 400", "chiffres": "Space Grotesk 700" },
+      "registre": "Zooms brusques sur le beat, dégradés chromés sur les titres, halos lenticulaires. Le seul registre où l'excès est le sujet.",
+      "fond": "Violet profond, dégradé maillé, étoiles fines."
+    },
+    {
+      "id": "vhs", "nom": "VHS",
+      "pour": "Nostalgie, archive, avant/après. Le grain raconte le temps qui passe.",
+      "brandColors": { "background": "#120E14", "accentPrimary": "#E23B2E", "accentSecondary": "#2F6FD0", "accentTertiary": "#EDE6DA" },
+      "texte": "#EDE6DA", "secondaire": "#948C82",
+      "polices": { "titre": "Oswald 600", "corps": "Inter 400", "chiffres": "Oswald 600" },
+      "registre": "Tremblement vertical d'un pixel, aberration chromatique de 1,5 px sur les bords, timecode en haut à droite. Les coupes passent par une image de bruit.",
+      "fond": "Noir violacé, lignes de balayage très faibles."
+    },
+    {
+      "id": "pastel", "nom": "Pastel",
+      "pour": "Bien-être, alimentation, artisanat. Quand il faut rassurer plutôt qu'impressionner.",
+      "brandColors": { "background": "#FBF7F4", "accentPrimary": "#B8623C", "accentSecondary": "#9DB5A0", "accentTertiary": "#C9A227" },
+      "texte": "#3B3A36", "secondaire": "#7B786F",
+      "polices": { "titre": "Quicksand 700", "corps": "Nunito Sans 400", "chiffres": "Quicksand 700" },
+      "registre": "Mouvements amples et lents, courbe d'accélération douce des deux côtés. Aucun impact, aucun flash. Les formes ont des angles arrondis de 24 px.",
+      "fond": "Crème rosé, formes organiques très pâles en arrière-plan."
+    },
+    {
+      "id": "luxe", "nom": "Luxe",
+      "pour": "Immobilier, gastronomie, service haut de gamme. L'immobilité est le message.",
+      "brandColors": { "background": "#0C0B09", "accentPrimary": "#C2A468", "accentSecondary": "#F2EDE4", "accentTertiary": "#7A6440" },
+      "texte": "#F2EDE4", "secondaire": "#948B7C",
+      "polices": { "titre": "Cormorant Garamond 300", "corps": "Montserrat 300", "chiffres": "Cormorant Garamond 300" },
+      "registre": "UNE seule animation par scène, et elle dure. Fondus de 1,4 s. Grandes lettres très espacées (0,3 em). Le vide occupe plus de la moitié de l'image.",
+      "fond": "Noir chaud. Aucun dégradé visible, juste une vignette très légère."
+    },
+    {
+      "id": "papier-decoupe", "nom": "Papier découpé",
+      "pour": "Pédagogie, explication en étapes, enfants. Chaque idée est un objet qu'on pose.",
+      "brandColors": { "background": "#F4EFE6", "accentPrimary": "#E4572E", "accentSecondary": "#2E86AB", "accentTertiary": "#F3A712" },
+      "texte": "#2B2A28", "secondaire": "#6D6A63",
+      "polices": { "titre": "Poppins 700", "corps": "Poppins 400", "chiffres": "Poppins 700" },
+      "registre": "Les éléments glissent en portant une ombre nette et décalée (4 px, 4 px, sans flou) — comme du papier posé sur une table. Ils entrent toujours depuis un bord, jamais en fondu.",
+      "fond": "Papier ivoire avec un grain fin, formes en aplats superposés."
+    }
+  ]
+}

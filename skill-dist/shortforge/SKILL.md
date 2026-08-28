@@ -54,6 +54,38 @@ néon jaune/violet/orange). Elle est éprouvée et lisible en feed mobile, mais 
 changer les quatre valeurs suffit à rehabiller toute la vidéo, aucune autre partie de la méthode
 n'en dépend.
 
+### Choisir son format et sa direction — les deux réglages qui changent tout
+
+Deux clés de `config.json`, indépendantes l'une de l'autre :
+
+| Clé | Ce que ça décide | Où sont les valeurs |
+|---|---|---|
+| `format` | La **structure du récit** : l'ordre des idées, l'endroit où tombe la surprise. | `formats.md` — dix structures |
+| `direction` | Le **visuel** : palette, typographie et registre d'animation, qui changent ensemble. | `directions.json` — dix directions |
+
+```json
+{ "format": "avant-apres", "direction": "terminal" }
+```
+
+Les dix formats : `tuto`, `avant-apres`, `erreur`, `top3`, `etude-de-cas`, `demo-produit`,
+`storytime`, `comparatif`, `checklist`, `veille`.
+
+Les dix directions : `neon` (défaut), `editorial`, `brutalist`, `swiss`, `terminal`, `y2k`,
+`vhs`, `pastel`, `luxe`, `papier-decoupe`.
+
+**Poser une direction, c'est trois gestes, pas un.** Copier son `brandColors` dans `config.json`
+ne suffit pas : il faut aussi prendre ses `polices` et respecter son `registre`. Une direction
+dont on ne garde que la palette donne la même vidéo repeinte — c'est le registre d'animation qui
+fait qu'on la reconnaît les yeux plissés.
+
+**Le contraste est déjà vérifié** pour les dix : au moins 4,5:1 entre le texte et le fond, au moins
+3:1 entre l'accent et le fond. Si tu composes ta propre direction, mesure-la avant de rendre — un
+texte illisible ne se voit pas sur un écran d'ordinateur en pleine lumière, et se voit sur tous les
+téléphones.
+
+**Le format ne dépend pas de la direction.** N'importe lequel des dix formats tient dans n'importe
+laquelle des dix directions : ce sont deux axes séparés, soit cent combinaisons.
+
 ### Prérequis — clés d'API (variables d'environnement)
 
 ShortForge est **autonome** : il ne dépend d'aucun serveur ni webhook tiers hébergé par quelqu'un

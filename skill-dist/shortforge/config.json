@@ -1,4 +1,6 @@
 {
+  "format": "tuto",
+  "direction": "neon",
   "voiceReferencePath": "assets/voice-reference-clean.wav",
   "brandColors": {
     "background": "#060606",
